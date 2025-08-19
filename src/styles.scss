@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+*,
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    display: block;
+}
+
+button {
+    width: 100%;
+    color: #ffffff;
+    border-radius: 5px; 
+    padding: 8px 15px;
+    border: 0;
+    background-color: brown;
+    cursor: pointer;
+}

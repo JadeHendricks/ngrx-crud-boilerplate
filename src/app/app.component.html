@@ -1,9 +1,1 @@
-<!-- Loading => {{loading$ | async }} -->
-
-<ul>
-    @for (employee of employees$ | async; track employee?.employeeId) {
-        <li>{{employee.fullName}}</li>
-    }
-</ul>
-
 <router-outlet />

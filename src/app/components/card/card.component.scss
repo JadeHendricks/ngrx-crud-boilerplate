@@ -1,0 +1,32 @@
+.card {
+    background-color: #ffffff;
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            object-fit: contain;
+            width: 14rem;
+            height: 14rem;
+        }
+    }
+    &-body {
+        padding: 1.5rem; 
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px; 
+        }
+        ul {
+            list-style-type: none;
+            li {
+                line-height: 1.4;
+            }
+        }
+    }
+    &-footer {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem; 
+    }
+}

@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">
+        @if(employee.gender === 'Male') {
+            <img src="images/male.jpg" alt={{employee.fullName}} title={{employee.fullName}} />
+        } @else {
+            <img src="images/female.jpg" alt={{employee.fullName}} title={{employee.fullName}} />
+        }
+    </div>
+    <div class="card-body">
+        <h3>{{employee.fullName}}</h3>
+        <ul>
+            <li>Email: {{employee.email}}</li>
+            <li>Phone: {{employee.phone}}</li>
+            <li>Gender: {{employee.gender}}</li>
+            <li>Salary: {{employee.salary}}</li>
+            <li>Department: {{employee.departmentName}}</li>
+            <li>Date of Joining: {{employee.dateOfJoining}}</li>
+            <li>Employee Type: {{employee.employeeType}}</li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <button>Update</button>
+        <button>Delete</button>
+    </div>
+</div>

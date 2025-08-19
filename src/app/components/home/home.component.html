@@ -1,0 +1,5 @@
+<section class="container">
+    @for (employee of employees$ | async; track employee?.employeeId) {
+        <app-card [employee]="employee"></app-card>
+    }
+</section>
