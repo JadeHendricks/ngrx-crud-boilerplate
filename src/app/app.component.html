@@ -1,2 +1,9 @@
-Hello World
+Loading => {{loading$ | async }}
+
+<ul>
+    @for (department of departments$ | async; track department?.departmentId) {
+        <li>{{department.departmentName}}</li>
+    }
+</ul>
+
 <router-outlet />
