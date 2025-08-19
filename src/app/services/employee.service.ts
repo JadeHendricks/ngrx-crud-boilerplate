@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DepartmentService {
+export class EmployeeService {
+  private baseUrl: string = "https://api.freeprojectapi.com/api"
   private http = inject(HttpClient);
 
-  public getDepartmnets(): Observable<Object> {
-      return this.http.get('https://api.freeprojectapi.com/api/EmployeeApp/GetDepartments');
+  public getEmployees(): Observable<Object> {
+      return this.http.get(`${this.baseUrl}/EmployeeApp/GetEmployees`);
   }
 }

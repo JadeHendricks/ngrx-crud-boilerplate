@@ -1,8 +1,8 @@
-Loading => {{loading$ | async }}
+<!-- Loading => {{loading$ | async }} -->
 
 <ul>
-    @for (department of departments$ | async; track department?.departmentId) {
-        <li>{{department.departmentName}}</li>
+    @for (employee of employees$ | async; track employee?.employeeId) {
+        <li>{{employee.fullName}}</li>
     }
 </ul>
 

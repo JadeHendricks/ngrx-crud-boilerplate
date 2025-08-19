@@ -6,15 +6,15 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient } from '@angular/common/http';
-import { departmentReducer } from './store/department/department.reducer';
-import { DepartmentEffects } from './store/department/departmnet.effect';
+import { employeeReducer } from './store/department/employee.reducer';
+import { EmployeeEffects } from './store/department/employee.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
     provideHttpClient(),
-    provideStore({departments: departmentReducer}), 
-    provideEffects([DepartmentEffects]), 
+    provideStore({employees: employeeReducer}), 
+    provideEffects([EmployeeEffects]), 
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };
