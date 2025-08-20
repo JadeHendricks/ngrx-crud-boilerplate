@@ -5,10 +5,11 @@
 <section class="employees">
     <div class="employees-container">
         <div class="employees-wrapper">
-            @if (loading) { <app-loader />}
-            
-            @if (employeeError) {<app-error [error]="employeeError"/> } 
-            @else {
+            @if (loading) { 
+                <app-loader />
+            } @else if(employeeError) {
+                <app-error [error]="employeeError"/>
+            } @else {
                 @for (employee of employees; track employee?.employeeId) {
                     <app-card [employee]="employee"></app-card>
                 }

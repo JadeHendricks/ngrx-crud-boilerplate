@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { EmployeeEffects } from './store/department/employee.effect';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
+    provideRouter(routes, withComponentInputBinding()), 
     provideHttpClient(),
     provideStore({employees: employeeReducer}), 
     provideEffects([EmployeeEffects]), 

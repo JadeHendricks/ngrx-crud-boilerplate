@@ -1,1 +1,32 @@
-<p>employee works!</p>
+@let employee = (employee$ | async);
+
+<section class="employee">
+    <div class="employee-container">
+        <div class="employee-wrapper">
+            <h3>{{employee?.fullName}}</h3> 
+            <button class="button button-primary" routerLink="/">Go back</button>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <img 
+                    src="images/{{employee?.gender === 'Male' ? 'male' : 'female'}}.jpg" 
+                    alt={{employee?.fullName}} 
+                    title={{employee?.fullName}} />
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><span>Email:</span> {{employee?.email}}</li>
+                    <li><span>Phone:</span> {{employee?.phone}}</li>
+                    <li><span>Gender:</span> {{employee?.gender}}</li>
+                    <li><span>Salary:</span> {{employee?.salary}}</li>
+                    <li><span>Department:</span> {{employee?.departmentName}}</li>
+                    <li><span>Date of Joining:</span> {{employee?.dateOfJoining}}</li>
+                    <li><span>Employee Type:</span> {{employee?.employeeType}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+

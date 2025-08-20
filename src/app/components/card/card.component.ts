@@ -14,6 +14,7 @@ export class CardComponent {
   private router = inject(Router);
 
   public viewMore(employeeId: number): void {
+    console.log(employeeId);
     this.router.navigate(['/employee', employeeId]);
   }
 

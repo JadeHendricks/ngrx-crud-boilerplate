@@ -13,4 +13,8 @@ export class EmployeeService {
   public getEmployees(): Observable<Employee[]> {
       return this.http.get<Employee[]>(`${this.baseUrl}/EmployeeApp/GetEmployees`);
   }
+
+  public getEmployeeById(employeeId: number): Observable<Employee> {
+      return this.http.get<Employee>(`${this.baseUrl}/EmployeeApp/${employeeId}`);
+  }
 }
