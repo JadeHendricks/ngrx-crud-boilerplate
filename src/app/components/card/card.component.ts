@@ -1,5 +1,6 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Employee } from '../../store/employee';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -10,4 +11,13 @@ import { Employee } from '../../store/employee';
 })
 export class CardComponent {
   @Input() employee!: Employee;
+  private router = inject(Router);
+
+  public viewMore(employeeId: number): void {
+    this.router.navigate(['/employee', employeeId]);
+  }
+
+  public deleteEmployee(employeeId: number): void {
+    console.log(`Delete employee with ID: ${employeeId}`);
+  }
 }

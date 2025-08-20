@@ -8,7 +8,12 @@ import { EmployeeState } from "./employee.reducer";
     state => state.employees
  );
 
-//  export const selectLoading = createSelector(
-//     selectEmployeeState,
-//     state => state.loading
-//  )
+ export const selectLoading = createSelector(
+    selectEmployeeState,
+    state => state.loading
+ )
+
+export const selectError = createSelector(
+    selectEmployeeState,
+    state => state.error
+ )

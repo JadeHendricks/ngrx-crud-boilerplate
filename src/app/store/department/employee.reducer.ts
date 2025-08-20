@@ -1,26 +1,36 @@
 import { createReducer, on } from "@ngrx/store";
 import { Employee } from "../employee";
-import { loadEmployee, loadEmployeeSuccess } from "./employee.action";
+import { loadEmployees, loadEmployeesError, loadEmployeesSuccess } from "./employee.action";
+import { HttpErrorResponse } from "@angular/common/http";
 
 export interface EmployeeState {
     employees: Employee[],
-    // loading: boolean
+    loading: boolean,
+    error: HttpErrorResponse | null
 }
 
 export const initalState: EmployeeState = {
     employees: [],
-    // loading: false
+    loading: false,
+    error: null
 }
 
 export const employeeReducer = createReducer(
     initalState,
-    on(loadEmployee, state => ({
+    on(loadEmployees, state => ({
         ...state,
-        // loading: true
+        loading: true,
+        error: null
     })),
-    on(loadEmployeeSuccess, (state, {employees}) =>({
+    on(loadEmployeesSuccess, (state, {employees}) =>({
         ...state,
         employees,
-        // loading: false
+        loading: false,
+        error: null
+    })),
+    on(loadEmployeesError, (state, {error}) =>({
+        ...state,
+        loading: false,
+        error: error
     }))
 )

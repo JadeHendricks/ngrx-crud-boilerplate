@@ -24,18 +24,18 @@ body {
   line-height: 1.2;
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    display: block;
-}
-
-button {
+.button {
     width: 100%;
     color: #ffffff;
     border-radius: 5px; 
     padding: 8px 15px;
     border: 0;
-    background-color: brown;
+    background-color: transparent;
     cursor: pointer;
+    &-danger {
+        background-color: #c34a36;
+    }
+    &-primary {
+        background-color: #008e9b;
+    }
 }

@@ -1,12 +1,14 @@
-/* 1 line to make a flex row */
-section.container { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 16px; 
-}
-
-section.container > app-card {
-  display: block;
-  flex: 0 0 calc((100% - 2*16px) / 3);
-  max-width: calc((100% - 2*16px) / 3);
+.employees {
+  padding: 5rem 0 10rem 0;
+  &-container {
+    display: block;
+    margin: 0 auto;
+    max-width: 96rem;
+  }
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+  }
 }
