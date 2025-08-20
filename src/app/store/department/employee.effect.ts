@@ -1,9 +1,10 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, mergeMap } from "rxjs";
-import { loadEmployees, loadEmployeesSuccess } from "./employee.action";
+import { catchError, delay, map, mergeMap, of } from "rxjs";
 import { Employee } from "../employee";
 import { EmployeeService } from "../../services/employee.service";
+import { EmployeeListActions } from "./employee.action";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class EmployeeEffects {
@@ -12,11 +13,15 @@ export class EmployeeEffects {
 
     loadEmployee$ = createEffect(() => 
         this.actions$.pipe(
-            ofType(loadEmployees),
+            ofType(EmployeeListActions.getEmployees),
             mergeMap(() =>
                 this.employeeService.getEmployees().pipe(
+                    delay(3000),
                     map((employees: Employee[]) => {
-                        return loadEmployeesSuccess({employees});
+                        return EmployeeListActions.getEmployeesSuccess({employees});
+                    }),
+                    catchError((error: HttpErrorResponse) => {
+                        return of(EmployeeListActions.getEmployeesError({error}));
                     })
                 )
             )

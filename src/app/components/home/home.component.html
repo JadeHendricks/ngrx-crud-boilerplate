@@ -1,8 +1,17 @@
+@let loading = (loading$ | async);
+@let employeeError = (error$ | async);
+@let employees = (employees$ | async) ?? [];
+
 <section class="employees">
     <div class="employees-container">
         <div class="employees-wrapper">
-            @for (employee of employees$ | async; track employee?.employeeId) {
-                <app-card [employee]="employee"></app-card>
+            @if (loading) { <app-loader />}
+            
+            @if (employeeError) {<app-error [error]="employeeError"/> } 
+            @else {
+                @for (employee of employees; track employee?.employeeId) {
+                    <app-card [employee]="employee"></app-card>
+                }
             }
         </div>
     </div>

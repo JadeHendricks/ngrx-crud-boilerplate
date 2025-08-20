@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { Employee } from "../employee";
-import { loadEmployees, loadEmployeesError, loadEmployeesSuccess } from "./employee.action";
 import { HttpErrorResponse } from "@angular/common/http";
+import { EmployeeListActions } from "./employee.action";
 
 export interface EmployeeState {
     employees: Employee[],
@@ -17,18 +17,18 @@ export const initalState: EmployeeState = {
 
 export const employeeReducer = createReducer(
     initalState,
-    on(loadEmployees, state => ({
+    on(EmployeeListActions.getEmployees, state => ({
         ...state,
         loading: true,
         error: null
     })),
-    on(loadEmployeesSuccess, (state, {employees}) =>({
+    on(EmployeeListActions.getEmployeesSuccess, (state, {employees}) =>({
         ...state,
         employees,
         loading: false,
         error: null
     })),
-    on(loadEmployeesError, (state, {error}) =>({
+    on(EmployeeListActions.getEmployeesError, (state, {error}) =>({
         ...state,
         loading: false,
         error: error
