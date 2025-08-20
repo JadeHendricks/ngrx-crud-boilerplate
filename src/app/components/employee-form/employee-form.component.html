@@ -1,0 +1,93 @@
+<div class="card">
+  <h2>Create Employee</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="grid">
+      <label>
+        <span>Full Name</span>
+        <input type="text" formControlName="fullName" />
+        <small class="danger" *ngIf="form.controls.fullName.touched && form.controls.fullName.invalid">
+          Full name is required (min 2).
+        </small>
+      </label>
+
+      <label>
+        <span>Email</span>
+        <input type="email" formControlName="email" />
+        <small class="danger" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+          Enter a valid email.
+        </small>
+      </label>
+
+      <label>
+        <span>Phone</span>
+        <input type="text" formControlName="phone" />
+        <small class="danger" *ngIf="form.controls.phone.touched && form.controls.phone.invalid">
+          Phone is required.
+        </small>
+      </label>
+
+      <label>
+        <span>Gender</span>
+        <div class="radio-row">
+          <label class="radio">
+            <input type="radio" formControlName="gender" value="Male" /> Male
+          </label>
+          <label class="radio">
+            <input type="radio" formControlName="gender" value="Female" /> Female
+          </label>
+        </div>
+      </label>
+
+      <label>
+        <span>Date of Joining</span>
+        <div class="date-row">
+          <input type="date" formControlName="dateOfJoining" />
+          <button type="button" class="btn btn-secondary" (click)="useToday()">Use Today</button>
+        </div>
+        <small class="muted">If left blank, today’s date will be used automatically.</small>
+      </label>
+
+      <label>
+        <span>Department</span>
+        <select formControlName="departmentId">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Designation</span>
+        <select formControlName="designationId">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Employee Type</span>
+        <input type="text" formControlName="employeeType" placeholder="e.g. Permanent / Contract" />
+        <small class="danger" *ngIf="form.controls.employeeType.touched && form.controls.employeeType.invalid">
+          Employee type is required.
+        </small>
+      </label>
+
+      <label>
+        <span>Salary</span>
+        <input type="number" formControlName="salary" min="0" step="1" />
+        <small class="danger" *ngIf="form.controls.salary.touched && form.controls.salary.invalid">
+          Salary must be 0 or greater.
+        </small>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="button button-primary">Submit</button>
+    </div>
+  </form>
+
+  <div class="result" *ngIf="submittedPayload as p">
+    <h3>Payload</h3>
+    <pre>{{ p | json }}</pre>
+  </div>
+</div>
