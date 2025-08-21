@@ -18,7 +18,7 @@ export class EmployeeService {
       return this.http.get<Employee>(`${this.baseUrl}/EmployeeApp/${employeeId}`);
   }
 
-  public deleteEmployeeById(employeeId: number): Observable<any> {
-      return this.http.delete<any>(`${this.baseUrl}/EmployeeApp/DeleteEmployee?id=${employeeId}`);
+  public deleteEmployeeById(employeeId: number): Observable<unknown> {
+      return this.http.delete<unknown>(`${this.baseUrl}/EmployeeApp/DeleteEmployee?id=${employeeId}`);
   }
 }

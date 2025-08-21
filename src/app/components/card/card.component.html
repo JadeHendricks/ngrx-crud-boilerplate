@@ -1,7 +1,9 @@
+
+@let employee = (this.employee());
 <div class="card">
     <div class="card-header">
         <img 
-            src="images/{{employee.gender === 'Male' ? 'male' : 'female'}}.jpg" 
+            src="images/{{employee?.gender?.toLowerCase()}}.jpg" 
             alt={{employee.fullName}} 
             title={{employee.fullName}} />
     </div>

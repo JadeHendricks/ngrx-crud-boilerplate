@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, Input, InputSignal, OnInit, signal } from '@angular/core';
-import { Employee } from '../../store/employee';
+import { ChangeDetectionStrategy, Component, inject, input, InputSignal, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';

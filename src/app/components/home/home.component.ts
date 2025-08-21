@@ -20,7 +20,7 @@ import { ErrorComponent } from '../error/error.component';
 export class HomeComponent {
   private store = inject(Store);
 
-  public employees$: Observable<Employee[]>= this.store.select(selectEmployees);
+  public employees$: Observable<Employee[]> = this.store.select(selectEmployees);
   public loading$: Observable<boolean> = this.store.select(selectLoading);
   public error$: Observable<HttpErrorResponse | null> = this.store.select(selectError);
 

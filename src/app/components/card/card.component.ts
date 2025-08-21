@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input, InputSignal } from '@angular/core';
 import { Employee } from '../../store/employee';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -11,9 +11,10 @@ import { Store } from '@ngrx/store';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  @Input() employee!: Employee;
   private router = inject(Router);
   private store = inject(Store);
+
+  public readonly employee: InputSignal<Employee> = input.required<Employee>()
 
   public viewMore(employeeId: number): void {
     this.router.navigate(['/employee', employeeId]);

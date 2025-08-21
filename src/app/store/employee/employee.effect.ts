@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, delay, map, mergeMap, of } from "rxjs";
+import { catchError, delay, exhaustMap, map, mergeMap, of } from "rxjs";
 import { Employee } from "../employee";
 import { EmployeeService } from "../../services/employee.service";
 import { EmployeeListActions } from "./employee.action";
@@ -13,11 +13,11 @@ export class EmployeeEffects {
     private actions$ = inject(Actions);
     private employeeService = inject(EmployeeService);
     private toastr = inject(ToastrService);
-
+    
     loadEmployee$ = createEffect(() => 
         this.actions$.pipe(
             ofType(EmployeeListActions.getEmployees),
-            mergeMap(() =>
+            exhaustMap(() =>
                 this.employeeService.getEmployees().pipe(
                     delay(1500),
                     map((employees: Employee[]) => {
@@ -41,7 +41,7 @@ export class EmployeeEffects {
                     return EmployeeListActions.deleteEmployeeSuccess({ employeeId });
                 }),
                 catchError((error: HttpErrorResponse) =>
-                of(EmployeeListActions.deleteEmployeeError({ error }))
+                    of(EmployeeListActions.deleteEmployeeError({ error }))
                 )
             )
             )

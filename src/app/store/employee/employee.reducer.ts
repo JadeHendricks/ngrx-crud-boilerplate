@@ -10,7 +10,7 @@ export interface EmployeeState {
     error: HttpErrorResponse | null
 }
 
-export const initalState: EmployeeState = {
+export const initialState: EmployeeState = {
     employees: [],
     currentEmployee: null,
     loading: false,
@@ -18,7 +18,7 @@ export const initalState: EmployeeState = {
 }
 
 export const employeeReducer = createReducer(
-    initalState,
+    initialState,
     on(EmployeeListActions.getEmployees, state => ({
         ...state,
         loading: true,
@@ -37,6 +37,7 @@ export const employeeReducer = createReducer(
     })),
         on(EmployeeListActions.getEmployeeById, state => ({
         ...state,
+        currentEmployee: null,
         loading: true,
         error: null
     })),
@@ -46,7 +47,7 @@ export const employeeReducer = createReducer(
         loading: false,
         error: null
     })),
-    on(EmployeeListActions.getEmployeesError, (state, {error}) =>({
+    on(EmployeeListActions.getEmployeeByIdError, (state, {error}) =>({
         ...state,
         loading: false,
         error
