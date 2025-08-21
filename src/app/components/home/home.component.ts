@@ -3,10 +3,10 @@ import { CardComponent } from '../card/card.component';
 import { Observable } from 'rxjs';
 import { Employee } from '../../store/employee';
 import { Store } from '@ngrx/store';
-import { selectEmployees, selectError, selectLoading } from '../../store/department/employee.selector';
+import { selectEmployees, selectError, selectLoading } from '../../store/employee/employee.selector';
 import { AsyncPipe, CommonModule, JsonPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { EmployeeListActions } from '../../store/department/employee.action';
+import { EmployeeListActions } from '../../store/employee/employee.action';
 import { LoaderComponent } from '../loader/loader.component';
 import { ErrorComponent } from '../error/error.component';
 

@@ -1,7 +1,7 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { EmployeePayload, Gender } from '../../models/EmployeeFormPayload';
+import { EmployeePayload, FullEmployeePayload, Gender } from '../../models/EmployeeFormPayload';
 
 @Component({
   selector: 'app-employee-form',
@@ -26,7 +26,7 @@ export class EmployeeFormComponent {
     salary: [0, [Validators.required, Validators.min(0)]],
   });
   
-  private buildPayload(formValues: any): EmployeePayload {
+  private buildPayload(formValues: EmployeePayload): FullEmployeePayload {
     return {
       employeeId: Date.now(),
       fullName: formValues.fullName!,
@@ -47,7 +47,7 @@ export class EmployeeFormComponent {
       return;
     }
 
-    const formValues = this.form.getRawValue();
+    const formValues = this.form.getRawValue() as EmployeePayload;
     this.submittedPayload  = this.buildPayload(formValues)
 
     console.log('POST this payload to API:', this.submittedPayload);

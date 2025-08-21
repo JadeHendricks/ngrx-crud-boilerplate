@@ -1,13 +1,16 @@
 import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
 
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient } from '@angular/common/http';
-import { employeeReducer } from './store/department/employee.reducer';
-import { EmployeeEffects } from './store/department/employee.effect';
+import { employeeReducer } from './store/employee/employee.reducer';
+import { EmployeeEffects } from './store/employee/employee.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +19,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore({employees: employeeReducer}), 
     provideEffects([EmployeeEffects]), 
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideToastr(),
+    provideAnimations()
+  ],
 };

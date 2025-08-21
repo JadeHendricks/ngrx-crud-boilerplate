@@ -1,6 +1,6 @@
 export type Gender = 'Male' | 'Female';
 
-export interface EmployeePayload {
+export interface FullEmployeePayload {
   employeeId: number;
   fullName: string;
   email: string;
@@ -12,3 +12,5 @@ export interface EmployeePayload {
   employeeType: string;
   salary: number;
 }
+
+export interface EmployeePayload extends Omit<FullEmployeePayload, "employeeId" | "dateOfJoining"> {}
