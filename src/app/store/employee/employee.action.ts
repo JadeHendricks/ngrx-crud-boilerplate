@@ -8,10 +8,12 @@ export const EmployeeListActions = createActionGroup({
     'GetEmployees': emptyProps(),
     'GetEmployees Success': props<{ employees: Employee[] }>(),
     'GetEmployees Error': props<{ error: HttpErrorResponse }>(),
-    // Adding Employee Actions
-    'AddEmployee': props<{ employee: Employee }>(),
-    'AddEmployee Success': props<{ employee: Employee }>(),
-    'AddEmployee Error': props<{ error: HttpErrorResponse }>(),
+
+    // Get EmployeeById Actions
+    'GetEmployeeById': props<{ employeeId: number }>(),
+    'GetEmployeeById Success': props<{ employee: Employee }>(),
+    'GetEmployeeById Error': props<{ error: HttpErrorResponse }>(),
+
     // Deleting Employee Actions
     'DeleteEmployee': props<{ employeeId: number }>(),
     'DeleteEmployee Success': props<{ employeeId: number }>(),

@@ -5,12 +5,14 @@ import { EmployeeListActions } from "./employee.action";
 
 export interface EmployeeState {
     employees: Employee[],
+    currentEmployee: Employee | null,
     loading: boolean,
     error: HttpErrorResponse | null
 }
 
 export const initalState: EmployeeState = {
     employees: [],
+    currentEmployee: null,
     loading: false,
     error: null
 }
@@ -33,19 +35,18 @@ export const employeeReducer = createReducer(
         loading: false,
         error
     })),
-    // Add Employee actions
-    on(EmployeeListActions.addEmployee, state  => ({
+        on(EmployeeListActions.getEmployeeById, state => ({
         ...state,
         loading: true,
         error: null
     })),
-    on(EmployeeListActions.addEmployeeSuccess, (state, {employee}) => ({
+    on(EmployeeListActions.getEmployeeByIdSuccess, (state, {employee}) =>({
         ...state,
-        employees: [...state.employees, employee],
+        currentEmployee: employee,
         loading: false,
         error: null
     })),
-    on(EmployeeListActions.addEmployeeError, (state, {error}) => ({
+    on(EmployeeListActions.getEmployeesError, (state, {error}) =>({
         ...state,
         loading: false,
         error
