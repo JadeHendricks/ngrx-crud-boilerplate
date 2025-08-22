@@ -1,59 +1,69 @@
-# NgrxCrudBoilerplate
+# NGRX Reference Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+This project serves as a **reference guide for implementing NgRx** in Angular 19 applications.  
+It covers core NgRx concepts, including **Actions, Effects, Reducers, and Selectors**, and introduces **NgRx Entity** for efficient management of collections.  
 
-## Development server
+This repository is intended as a **learning and reference tool** for future projects.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🛠 Tools & Technologies
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 19** – modern Angular framework for building SPA applications  
+- **NgRx** – Redux-inspired state management library for Angular  
+- **RxJS** – reactive programming library for handling asynchronous streams  
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🔹 Project Structure
 
-```bash
-ng generate component component-name
-```
+The repository demonstrates a typical **NgRx flow** using an `Employee` feature module.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1. Actions
+Defined using `createActionGroup`:
 
-```bash
-ng generate --help
-```
+- **Load Employees**  
+- **Load Employee by ID**  
+- **Delete Employee**  
 
-## Building
+Each action group includes **request, success, and error** variants for handling asynchronous operations.
 
-To build the project run:
+### 2. Effects
+Effects handle side effects and asynchronous logic using RxJS operators like `mergeMap`, `exhaustMap`, and `catchError`.
 
-```bash
-ng build
-```
+- Observables returned from services are transformed into NgRx actions.  
+- Success actions update the store, while error actions handle failures gracefully.  
+- Optional: Notifications via `ngx-toastr` are triggered on certain effects.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 3. Reducers
+Reducers update the application state based on dispatched actions:
 
-## Running unit tests
+- `loading` and `error` flags manage request status.  
+- Employee data is stored in arrays or Entity collections.  
+- `delete`, `update`, and `add` operations modify state immutably.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 4. Selectors
+Selectors provide **derived or computed slices of state**:
 
-```bash
-ng test
-```
+- `selectEmployees` – returns an array of all employees  
+- `selectEmployeeEntities` – returns a dictionary of employees keyed by ID  
+- `selectEmployeeIds` – returns an array of employee IDs  
+- `selectEmployeeTotal` – returns the total number of employees  
 
-## Running end-to-end tests
+Selectors allow components to reactively subscribe to specific parts of the store.
 
-For end-to-end (e2e) testing, run:
+### 5. NgRx Entity
+NgRx Entity is used for **efficient state management of collections**:
 
-```bash
-ng e2e
-```
+- Normalizes collections into `{ ids: [], entities: {} }` format  
+- Provides helper methods like `addOne`, `removeOne`, `updateOne`, `setAll`  
+- Enables **O(1) lookups** for individual entities  
+- Reduces boilerplate in reducers and selectors  
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**Use cases:**
 
-## Additional Resources
+- Arrays or collections (e.g., list of employees, products, messages)  
+- Fast retrieval by ID  
+- Simplified updates and deletions  
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> Note: For single objects like `currentEmployee`, storing the plain object or using a `selectedId` lookup with entity is preferred.
