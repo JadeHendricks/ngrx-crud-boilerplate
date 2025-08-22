@@ -1,7 +1,14 @@
 @let employee = (currentEmployee$ | async);
+@let error = (error$ | async);
+@let loading = (loading$ | async);
 
 <section class="employee">
     <div class="employee-container">
+        @if (loading) {
+            <app-loader />
+        } @else if (error) {
+            <app-error [error]="error"/>
+        } @else {
         <div class="employee-wrapper">
             <h3>{{employee?.fullName}}</h3> 
             <button class="button button-primary" routerLink="/">Go back</button>
@@ -26,6 +33,7 @@
                 </ul>
             </div>
         </div>
+        }
     </div>
 </section>
 

@@ -20,12 +20,23 @@ export class EmployeeEffects {
             exhaustMap(() =>
                 this.employeeService.getEmployees().pipe(
                     delay(1500),
-                    map((employees: Employee[]) => {
-                        return EmployeeListActions.getEmployeesSuccess({employees});
+                    map((employees: Employee[]) =>  EmployeeListActions.getEmployeesSuccess({employees})),
+                    catchError((error: HttpErrorResponse) => of(EmployeeListActions.getEmployeesError({error})))
+                )
+            )
+        )
+    );
+
+    getEmployeeById$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(EmployeeListActions.getEmployeeById),
+            mergeMap(({ employeeId }) =>
+                this.employeeService.getEmployeeById(employeeId).pipe(
+                    map((employee) => {
+                        this.toastr.success(`Employee with the id of: ${employeeId} was retrived successfully`, 'Success');
+                        return EmployeeListActions.getEmployeeByIdSuccess({ employee });
                     }),
-                    catchError((error: HttpErrorResponse) => {
-                        return of(EmployeeListActions.getEmployeesError({error}));
-                    })
+                    catchError((error: HttpErrorResponse) => of(EmployeeListActions.getEmployeeByIdError({ error })))
                 )
             )
         )
@@ -40,27 +51,11 @@ export class EmployeeEffects {
                     this.toastr.success(`Employee with the id of: ${employeeId} was deleted successfully`, 'Success');
                     return EmployeeListActions.deleteEmployeeSuccess({ employeeId });
                 }),
-                catchError((error: HttpErrorResponse) =>
-                    of(EmployeeListActions.deleteEmployeeError({ error }))
-                )
+                catchError((error: HttpErrorResponse) => {
+                    this.toastr.error(`Failed to delete employee with the id of: ${employeeId}`, 'Error');
+                    return of(EmployeeListActions.deleteEmployeeError({ error }));
+                })
             )
-            )
-        )
-    );
-
-    getEmployeeById$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(EmployeeListActions.getEmployeeById),
-            mergeMap(({ employeeId }) =>
-                this.employeeService.getEmployeeById(employeeId).pipe(
-                    map((employee) => {
-                        this.toastr.success(`Employee with the id of: ${employeeId} was retrived successfully`, 'Success');
-                        return EmployeeListActions.getEmployeeByIdSuccess({ employee });
-                    }),
-                    catchError((error: HttpErrorResponse) =>
-                        of(EmployeeListActions.getEmployeeByIdError({ error }))
-                    )
-                )
             )
         )
     );

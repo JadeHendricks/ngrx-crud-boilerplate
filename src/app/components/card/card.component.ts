@@ -21,9 +21,11 @@ export class CardComponent {
   }
 
   public deleteEmployee(employeeId: number): void {
-    this.store.dispatch({
-      type: '[Employees List] DeleteEmployee',  
-      employeeId: employeeId
-    });
+    if (confirm('Are you sure you want to delete this employee?')) {
+      this.store.dispatch({
+        type: '[Employees List] DeleteEmployee',  
+        employeeId: employeeId
+      });
+    }
   }
 }
